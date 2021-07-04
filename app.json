@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "react-native-simple-chat",
+    "name": "Simple Chat",
     "slug": "react-native-simple-chat",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,20 +8,31 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#778BDD"
+      "backgroundColor": "#E6D6C6"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "The app accesses to photo library to upload your profile photo when you are signing up or updating the profile."
+      },
+      "bundleIdentifier": "com.alchemistk.rnsimplechat"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.alchemistk.rnsimplechat",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
