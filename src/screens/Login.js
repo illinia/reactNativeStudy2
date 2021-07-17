@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, usecontext, useContext } from 'react';
-import { ProgressContext } from '../contexts';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { ProgressContext, UserContext } from '../contexts';
 import styled from 'styled-components/native';
 import { Image, Input, Button } from '../components';
 import { images } from '../utils/images';
@@ -29,6 +29,7 @@ const ErrorText = styled.Text`
 `;
 
 const Login = ({ navigation }) => {
+  const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
   const insets = useSafeAreaInsets();
   const [email, setEmail] = useState('');
@@ -57,8 +58,7 @@ const Login = ({ navigation }) => {
     try {
       spinner.start();
       const user = await login({ email, password });
-      console.log(user);
-      Alert.alert('Login Success', user.email);
+      dispatch(user);
     } catch (e) {
       Alert.alert('Login Error', e.message);
     } finally {

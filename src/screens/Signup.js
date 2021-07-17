@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { ProgressContext } from '../contexts';
+import { ProgressContext, UserContext } from '../contexts';
 import styled from 'styled-components/native';
 import { Image, Input, Button } from '../components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -26,6 +26,7 @@ const ErrorText = styled.Text`
 `;
 
 const Signup = () => {
+  const { dispatch } = useContext(UserContext);
   const { spinner } = useContext(ProgressContext);
   const [photoUrl, setPhotoUrl] = useState(images.photo);
   const [name, setName] = useState('');
@@ -70,8 +71,7 @@ const Signup = () => {
     try {
       spinner.start();
       const user = await signup({ email, password, name, photoUrl });
-      console.log(user);
-      Alert.alert('Signup Success', user.email);
+      dispatch(user);
     } catch (e) {
       Alert.alert('Signup Error', e.message);
     } finally {
